@@ -1,0 +1,19 @@
+{
+  "domain": "google_fonts_icons",
+  "name": "Google Fonts Icons",
+  "codeowners": [
+    "@NiklasM-foss"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http"
+  ],
+  "documentation": "https://github.com/NiklasM-foss/ha-google-fonts-icons",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/NiklasM-foss/ha-google-fonts-icons/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "1.0.0"
+}

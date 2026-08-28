@@ -1,0 +1,63 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Google Fonts Icons",
+        "description": "Adds the Material Symbols icon set from Google Fonts to Home Assistant. Use them anywhere an icon can be set, for example gfi:rocket_launch.",
+        "data": {
+          "style": "Style",
+          "weight": "Stroke weight",
+          "offline_pack": "Keep all icons locally"
+        },
+        "data_description": {
+          "style": "Used by the gfi: prefix. The other styles stay available as gfio:, gfir: and gfis:.",
+          "weight": "Thickness of the icon strokes, 400 matches the Google Fonts default.",
+          "offline_pack": "Downloads the icon package once (about 2 MB) so icons work without internet. When off, single icons are fetched from the CDN as they are used."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Google Fonts Icons is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Google Fonts Icons",
+        "description": "Changes apply after Home Assistant reloads the integration and the browser page is refreshed.",
+        "data": {
+          "style": "Style",
+          "weight": "Stroke weight",
+          "offline_pack": "Keep all icons locally"
+        },
+        "data_description": {
+          "style": "Used by the gfi: prefix. The other styles stay available as gfio:, gfir: and gfis:.",
+          "weight": "Thickness of the icon strokes, 400 matches the Google Fonts default.",
+          "offline_pack": "Downloads the icon package once (about 2 MB) so icons work without internet. When off, single icons are fetched from the CDN as they are used."
+        }
+      }
+    }
+  },
+  "selector": {
+    "style": {
+      "options": {
+        "outlined": "Outlined",
+        "rounded": "Rounded",
+        "sharp": "Sharp"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "icon_set": {
+        "name": "Icons"
+      }
+    }
+  },
+  "services": {
+    "refresh": {
+      "name": "Refresh icons",
+      "description": "Downloads the icon package again, for example to pick up newly published Material Symbols."
+    }
+  }
+}

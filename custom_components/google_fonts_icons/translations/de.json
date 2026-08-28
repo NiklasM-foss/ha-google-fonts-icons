@@ -1,0 +1,63 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Google Fonts Icons",
+        "description": "Bindet die Material Symbols von Google Fonts als Icon-Set ein. Nutzbar überall dort, wo ein Icon eingetragen wird, zum Beispiel gfi:rocket_launch.",
+        "data": {
+          "style": "Stil",
+          "weight": "Strichstärke",
+          "offline_pack": "Alle Icons lokal vorhalten"
+        },
+        "data_description": {
+          "style": "Gilt für das Präfix gfi:. Die anderen Stile bleiben als gfio:, gfir: und gfis: erreichbar.",
+          "weight": "Dicke der Linien, 400 entspricht der Voreinstellung von Google Fonts.",
+          "offline_pack": "Lädt das Icon-Paket einmalig herunter (rund 2 MB), danach funktionieren die Icons ohne Internet. Ausgeschaltet werden einzelne Icons bei Bedarf vom CDN geholt."
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Google Fonts Icons ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Google Fonts Icons",
+        "description": "Änderungen greifen, sobald Home Assistant die Integration neu geladen hat und die Browser-Seite neu geladen wurde.",
+        "data": {
+          "style": "Stil",
+          "weight": "Strichstärke",
+          "offline_pack": "Alle Icons lokal vorhalten"
+        },
+        "data_description": {
+          "style": "Gilt für das Präfix gfi:. Die anderen Stile bleiben als gfio:, gfir: und gfis: erreichbar.",
+          "weight": "Dicke der Linien, 400 entspricht der Voreinstellung von Google Fonts.",
+          "offline_pack": "Lädt das Icon-Paket einmalig herunter (rund 2 MB), danach funktionieren die Icons ohne Internet. Ausgeschaltet werden einzelne Icons bei Bedarf vom CDN geholt."
+        }
+      }
+    }
+  },
+  "selector": {
+    "style": {
+      "options": {
+        "outlined": "Outlined",
+        "rounded": "Rounded",
+        "sharp": "Sharp"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "icon_set": {
+        "name": "Icons"
+      }
+    }
+  },
+  "services": {
+    "refresh": {
+      "name": "Icons aktualisieren",
+      "description": "Lädt das Icon-Paket erneut herunter, zum Beispiel für neu veröffentlichte Material Symbols."
+    }
+  }
+}

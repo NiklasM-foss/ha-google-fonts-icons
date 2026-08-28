@@ -1,0 +1,10 @@
+{
+  "entity": {
+    "sensor": {
+      "icon_set": { "default": "mdi:shape-outline" }
+    }
+  },
+  "services": {
+    "refresh": { "service": "mdi:refresh" }
+  }
+}

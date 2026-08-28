@@ -1,0 +1,5 @@
+refresh:
+  name: Refresh icons
+  description: >-
+    Downloads the Material Symbols package again, for example to pick up newly
+    published icons or after switching the stroke weight.
