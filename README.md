@@ -1,99 +1,135 @@
-# Google Fonts Icons für Home Assistant
+# Google Fonts Icons for Home Assistant
 
-Bindet die [Material Symbols](https://fonts.google.com/icons) von Google Fonts als
-zusätzliches Icon-Set in Home Assistant ein. Damit stehen rund **3.900 Icons je Stil**
-(plus jeweils eine gefüllte Variante) überall dort zur Verfügung, wo sonst nur
-`mdi:` möglich ist: Entitäten, Dashboard-Karten, Helfer, Bereiche, Skripte.
+*Deutsche Version: [README.de.md](README.de.md)*
+
+Adds the [Material Symbols](https://fonts.google.com/icons) from Google Fonts as an
+extra icon set to Home Assistant. That gives you about **3,900 icons per style** (each
+with a filled variant, so roughly 7,800 names) everywhere only `mdi:` used to work:
+entities, dashboard cards, helpers, areas, scripts.
 
 ```yaml
 type: tile
-entity: light.wohnzimmer
+entity: light.living_room
 icon: gfi:floor_lamp
 ```
 
-Die Icons kommen als reine Pfaddaten aus dem npm-Paket `@material-symbols/svg-<Stärke>`
-und werden serverseitig zwischengespeichert. Es wird keine Schriftart geladen und beim
-Anzeigen eines Icons geht keine Anfrage an Google.
+The icons are plain SVG path data taken from the npm package
+`@material-symbols/svg-<weight>` and cached on the server. No web font is loaded, and
+rendering an icon never sends a request to Google.
 
-## Präfixe
+## Prefixes
 
-| Präfix | Stil |
+| Prefix | Style |
 | --- | --- |
-| `gfi:` | Stil aus den Optionen (Voreinstellung *outlined*), erscheint in der Icon-Auswahl |
+| `gfi:` | the style chosen in the options (default *outlined*), the one that shows up in the icon picker |
 | `gfio:` | outlined |
 | `gfir:` | rounded |
 | `gfis:` | sharp |
 
-Die gefüllte Variante hat das Suffix `-fill`, der Name selbst ist der Name aus dem
-Google-Fonts-Katalog mit Unterstrichen:
+The filled variant uses the suffix `-fill`. The name itself is the name from the Google
+Fonts catalogue with underscores:
 
-| Beispiel | Ergebnis |
+| Example | Result |
 | --- | --- |
-| `gfi:home` | Haus, Standardstil |
-| `gfi:home-fill` | Haus, gefüllt |
-| `gfir:wb_sunny` | Sonne, rounded |
-| `gfis:water_drop-fill` | Tropfen, sharp, gefüllt |
+| `gfi:home` | house, default style |
+| `gfi:home-fill` | house, filled |
+| `gfir:wb_sunny` | sun, rounded |
+| `gfis:water_drop-fill` | droplet, sharp, filled |
 
-Nur `gfi:` füllt die Icon-Auswahl der Oberfläche, sonst stünden dieselben Namen
-viermal in der Liste. Die anderen Präfixe funktionieren durch Eintippen genauso.
+Only `gfi:` populates the icon picker in the UI, otherwise the same names would be
+listed four times. The other prefixes work just as well when typed in by hand.
+
+## Requirements
+
+- Home Assistant **2024.11.0** or newer
+- Internet access on first use, to download the icon package or single icons
+- HACS, if you want to install and update it the comfortable way
 
 ## Installation
 
 ### HACS
 
-1. HACS → Menü oben rechts → *Benutzerdefinierte Repositories*
-2. Repository `https://github.com/NiklasM-foss/ha-google-fonts-icons`, Kategorie *Integration*
-3. „Google Fonts Icons" installieren, Home Assistant neu starten
-4. Einstellungen → Geräte & Dienste → *Integration hinzufügen* → „Google Fonts Icons"
+1. HACS → menu at the top right → *Custom repositories*
+2. Repository `https://github.com/NiklasM-foss/ha-google-fonts-icons`, category *Integration*
+3. Install "Google Fonts Icons", then restart Home Assistant
+4. Settings → Devices & services → *Add integration* → "Google Fonts Icons"
 
-### Manuell
+### Manual
 
-Ordner `custom_components/google_fonts_icons` nach `<config>/custom_components/google_fonts_icons`
-kopieren und Home Assistant neu starten.
+Copy the folder `custom_components/google_fonts_icons` to
+`<config>/custom_components/google_fonts_icons` and restart Home Assistant.
 
-Das benötigte Frontend-Modul registriert die Integration selbst, es muss **keine**
-Ressource unter *Einstellungen → Dashboards → Ressourcen* eingetragen werden. Nach der
-Einrichtung einmal die Browser-Seite neu laden (Strg+F5), danach werden die Icons
-gerendert.
+The integration registers its own frontend module, so there is **no** need to add a
+resource under *Settings → Dashboards → Resources*. After setup, reload the browser page
+once (Ctrl+F5) and the icons will render.
 
-## Optionen
+## Options
 
-| Option | Bedeutung |
+| Option | Meaning |
 | --- | --- |
-| **Stil** | Stil hinter `gfi:` – outlined, rounded oder sharp. |
-| **Strichstärke** | 100 bis 700, entspricht der Achse *weight* in Google Fonts. 400 ist der Standard. |
-| **Alle Icons lokal vorhalten** | Lädt das komplette Paket einmalig (rund 2 MB Download, danach etwa 11 MB in `.storage/google_fonts_icons`). Icons funktionieren dann ohne Internet. |
+| **Style** | The style behind `gfi:` — outlined, rounded or sharp. |
+| **Stroke weight** | 100 to 700, the *weight* axis in Google Fonts. 400 is the default. |
+| **Keep all icons locally** | Downloads the complete package once (about 2 MB of download, about 11 MB afterwards in `.storage/google_fonts_icons`). Icons then work without internet. |
 
-Ist die Option ausgeschaltet, holt die Integration jedes benutzte Icon einzeln vom
-CDN (jsDelivr) und merkt es sich dauerhaft. Das spart Plattenplatz, braucht aber beim
-ersten Aufruf eines Icons eine Internetverbindung.
+With that option turned off, the integration fetches each icon you actually use from the
+CDN (jsDelivr) one by one and remembers it permanently. That saves disk space but needs
+an internet connection the first time an icon is used.
 
-Änderungen an den Optionen greifen nach dem automatischen Neuladen der Integration und
-einem Neuladen der Browser-Seite.
+Option changes take effect after the integration reloads itself and the browser page is
+refreshed.
 
-## Dienst und Sensor
+## Service and sensor
 
-- **`google_fonts_icons.refresh`** lädt das Paket erneut herunter, etwa für neu
-  veröffentlichte Icons.
-- Der Diagnose-Sensor **Icons** zeigt die Anzahl verfügbarer Icons und als Attribute
-  Stil, Strichstärke, Paketversion, Quelle (`pack` oder `cdn`) und den letzten Fehler.
+- **`google_fonts_icons.refresh`** downloads the package again, for example to pick up
+  newly published icons.
+- The diagnostic sensor **Icons** shows how many icons are available and exposes style,
+  stroke weight, package version, source (`pack` or `cdn`), the number of icons cached
+  on demand and the last error as attributes.
 
-## Endpunkte
+## Endpoints
 
-Für eigene Karten oder Vorlagen liefert die Integration die Pfaddaten direkt:
+For your own cards or templates the integration serves the path data directly:
 
-| Endpunkt | Antwort |
+| Endpoint | Response |
 | --- | --- |
-| `/api/google_fonts_icons/status` | Stil, Strichstärke, Version, Anzahl |
-| `/api/google_fonts_icons/list` | alle Icon-Namen des gewählten Stils |
-| `/api/google_fonts_icons/icon/<stil>/<name>` | `{"path": "...", "viewBox": "0 -960 960 960"}` |
+| `/api/google_fonts_icons/status` | style, stroke weight, version, counts |
+| `/api/google_fonts_icons/list` | all icon names of the selected style |
+| `/api/google_fonts_icons/icon/<style>/<name>` | `{"path": "...", "viewBox": "0 -960 960 960"}` |
 
-Als Stil ist auch `default` erlaubt, das entspricht der Einstellung aus den Optionen.
-Die Endpunkte liefern ausschließlich Icon-Geometrie und brauchen daher keine
-Anmeldung, akzeptiert werden nur Namen aus dem Zeichenvorrat des Pakets.
+`default` is accepted as a style and resolves to the setting from the options. The
+endpoints return icon geometry only and therefore need no authentication; they accept
+only names built from the character set used by the package.
 
-## Lizenz
+## Troubleshooting
 
-Der Code steht unter der MIT-Lizenz. Die Material Symbols selbst stammen von Google und
-stehen unter der [Apache-Lizenz 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE);
-sie sind nicht Teil dieses Repositories, sondern werden zur Laufzeit geladen.
+**Icons stay blank or show as a placeholder.** Reload the browser page with Ctrl+F5. The
+frontend module is added with a version query string, but a cached page from before the
+setup does not know about the icon sets yet.
+
+**Nothing works after a Home Assistant update.** Check that the integration is still
+loaded under Settings → Devices & services. The icon sets are registered by the frontend
+module, which is only served while the config entry is set up.
+
+**A single icon is missing.** Check the exact name in the
+[Google Fonts catalogue](https://fonts.google.com/icons) — names are lowercase with
+underscores (`wb_sunny`, not `wb-sunny` or `WbSunny`). Names that do not match
+`[a-z0-9_]` plus an optional `-fill` are rejected on purpose.
+
+**The sensor shows 0 icons or `source: cdn` although the offline pack is enabled.** The
+download runs in the background and can fail without internet or npm access. The
+attribute `last_error` on the sensor names the reason; call
+`google_fonts_icons.refresh` to try again.
+
+**Icons should work without internet.** Enable *Keep all icons locally* in the options.
+Only then is the complete package on disk; in on-demand mode every icon that has not
+been used yet still needs the CDN.
+
+**Reporting a problem.** Settings → Devices & services → Google Fonts Icons → three-dot
+menu → *Download diagnostics* collects the options and the store status without any
+personal data.
+
+## License
+
+The code is MIT licensed. The Material Symbols themselves come from Google and are
+published under the [Apache License 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE);
+they are not part of this repository but downloaded at runtime.
