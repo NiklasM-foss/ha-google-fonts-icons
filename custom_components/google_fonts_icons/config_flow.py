@@ -76,6 +76,23 @@ class GoogleFontsIconsConfigFlow(ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(title=TITLE, data=user_input)
         return self.async_show_form(step_id="user", data_schema=_schema({}))
 
+    async def async_step_reconfigure(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        """Stil, Strichstaerke und Offline-Paket des Eintrags neu festlegen."""
+        entry = self._get_reconfigure_entry()
+        if user_input is not None:
+            # Optionen ueberschreiben die Daten beim Laden, die neu gesetzten
+            # Werte muessen dort also raus, sonst bleibt alles beim Alten.
+            options = {k: v for k, v in entry.options.items() if k not in user_input}
+            return self.async_update_reload_and_abort(
+                entry, data_updates=user_input, options=options
+            )
+        defaults = {**entry.data, **entry.options}
+        return self.async_show_form(
+            step_id="reconfigure", data_schema=_schema(defaults)
+        )
+
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:

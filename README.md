@@ -78,6 +78,21 @@ an internet connection the first time an icon is used.
 Option changes take effect after the integration reloads itself and the browser page is
 refreshed.
 
+## Changing the settings later
+
+There are two ways to change style, stroke weight and the offline pack after setup:
+
+- **Configure** (Settings → Devices & services → Google Fonts Icons → *Configure*)
+  opens the options shown above.
+- **Reconfigure** (same page, three-dot menu → *Reconfigure*) shows the setup form
+  again, prefilled with the current values, and stores the result as the entry's
+  configuration. Use it if you want the setup values themselves changed instead of
+  overriding them with options.
+
+Either way the integration reloads itself. Refresh the browser page afterwards
+(Ctrl+F5) so the new style or weight shows up. Reconfigure needs Home Assistant
+2024.11 or newer.
+
 ## Service and sensor
 
 - **`google_fonts_icons.refresh`** downloads the package again, for example to pick up

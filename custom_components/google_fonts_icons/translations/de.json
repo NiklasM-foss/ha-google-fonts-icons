@@ -14,10 +14,25 @@
           "weight": "Dicke der Linien, 400 entspricht der Voreinstellung von Google Fonts.",
           "offline_pack": "Lädt das Icon-Paket einmalig herunter (rund 2 MB), danach funktionieren die Icons ohne Internet. Ausgeschaltet werden einzelne Icons bei Bedarf vom CDN geholt."
         }
+      },
+      "reconfigure": {
+        "title": "Google Fonts Icons",
+        "description": "Ändert die Einstellungen des Icon-Sets. Die Integration lädt sich danach selbst neu, anschließend die Browser-Seite neu laden.",
+        "data": {
+          "style": "Stil",
+          "weight": "Strichstärke",
+          "offline_pack": "Alle Icons lokal vorhalten"
+        },
+        "data_description": {
+          "style": "Gilt für das Präfix gfi:. Die anderen Stile bleiben als gfio:, gfir: und gfis: erreichbar.",
+          "weight": "Dicke der Linien, 400 entspricht der Voreinstellung von Google Fonts.",
+          "offline_pack": "Lädt das Icon-Paket einmalig herunter (rund 2 MB), danach funktionieren die Icons ohne Internet. Ausgeschaltet werden einzelne Icons bei Bedarf vom CDN geholt."
+        }
       }
     },
     "abort": {
-      "single_instance_allowed": "Google Fonts Icons ist bereits eingerichtet."
+      "single_instance_allowed": "Google Fonts Icons ist bereits eingerichtet.",
+      "reconfigure_successful": "Die Einstellungen wurden übernommen und die Integration neu geladen."
     }
   },
   "options": {

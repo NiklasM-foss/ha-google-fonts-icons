@@ -80,6 +80,21 @@ ersten Aufruf eines Icons eine Internetverbindung.
 Änderungen an den Optionen greifen nach dem automatischen Neuladen der Integration und
 einem Neuladen der Browser-Seite.
 
+## Einstellungen später ändern
+
+Stil, Strichstärke und Offline-Paket lassen sich nach der Einrichtung auf zwei Wegen
+ändern:
+
+- **Konfigurieren** (Einstellungen → Geräte & Dienste → Google Fonts Icons →
+  *Konfigurieren*) öffnet die Optionen von oben.
+- **Neu konfigurieren** (gleiche Seite, Drei-Punkte-Menü → *Neu konfigurieren*) zeigt
+  das Einrichtungsformular mit den aktuellen Werten erneut an und speichert das
+  Ergebnis als Konfiguration des Eintrags.
+
+In beiden Fällen lädt sich die Integration selbst neu. Danach die Browser-Seite neu
+laden (Strg+F5), damit der neue Stil oder die neue Strichstärke erscheint. Neu
+konfigurieren setzt Home Assistant 2024.11 oder neuer voraus.
+
 ## Dienst und Sensor
 
 - **`google_fonts_icons.refresh`** lädt das Paket erneut herunter, etwa für neu

@@ -14,10 +14,25 @@
           "weight": "Thickness of the icon strokes, 400 matches the Google Fonts default.",
           "offline_pack": "Downloads the icon package once (about 2 MB) so icons work without internet. When off, single icons are fetched from the CDN as they are used."
         }
+      },
+      "reconfigure": {
+        "title": "Google Fonts Icons",
+        "description": "Changes the settings of the icon set. The integration reloads itself afterwards, then refresh the browser page.",
+        "data": {
+          "style": "Style",
+          "weight": "Stroke weight",
+          "offline_pack": "Keep all icons locally"
+        },
+        "data_description": {
+          "style": "Used by the gfi: prefix. The other styles stay available as gfio:, gfir: and gfis:.",
+          "weight": "Thickness of the icon strokes, 400 matches the Google Fonts default.",
+          "offline_pack": "Downloads the icon package once (about 2 MB) so icons work without internet. When off, single icons are fetched from the CDN as they are used."
+        }
       }
     },
     "abort": {
-      "single_instance_allowed": "Google Fonts Icons is already set up."
+      "single_instance_allowed": "Google Fonts Icons is already set up.",
+      "reconfigure_successful": "The settings were updated and the integration was reloaded."
     }
   },
   "options": {

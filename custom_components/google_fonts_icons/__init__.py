@@ -90,10 +90,14 @@ async def _async_register_frontend(hass: HomeAssistant) -> None:
     """Das Modul ausliefern, das die Icon-Sets im Browser anmeldet."""
     if hass.data[DOMAIN].get("frontend_registered"):
         return
-    source = Path(__file__).parent / "frontend" / JS_FILENAME
-    await hass.http.async_register_static_paths(
-        [StaticPathConfig(JS_URL, str(source), False)]
-    )
+    # Statische Pfade lassen sich nicht wieder abmelden, deshalb nur einmal pro
+    # Laufzeit registrieren. Sonst scheitert jedes Neuladen am doppelten Pfad.
+    if not hass.data[DOMAIN].get("static_registered"):
+        source = Path(__file__).parent / "frontend" / JS_FILENAME
+        await hass.http.async_register_static_paths(
+            [StaticPathConfig(JS_URL, str(source), False)]
+        )
+        hass.data[DOMAIN]["static_registered"] = True
     add_extra_js_url(hass, f"{JS_URL}?v={JS_VERSION}")
     hass.data[DOMAIN]["frontend_registered"] = True
 
